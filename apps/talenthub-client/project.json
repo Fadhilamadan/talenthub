@@ -1,0 +1,9 @@
+{
+  "name": "talenthub-client",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/talenthub-client",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project talenthub-client --web",
+  "targets": {}
+}
