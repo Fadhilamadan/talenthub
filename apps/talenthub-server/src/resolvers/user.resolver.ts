@@ -75,7 +75,10 @@ export default {
       }
 
       return {
-        token: createToken({ email }, jwtSecret),
+        token: createToken(
+          { id: user.id, name: user.name, email: user.email, role: user.role },
+          jwtSecret,
+        ),
       };
     },
   },
