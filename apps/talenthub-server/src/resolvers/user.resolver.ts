@@ -61,7 +61,39 @@ export default {
   },
 
   Mutation: {
-    signIn: async (_: unknown, { email, password }, { models, jwtSecret }) => {
+    signUp: async (
+      _: unknown,
+      {
+        name,
+        email,
+        password,
+      }: {
+        name: string;
+        email: string;
+        password: string;
+      },
+      { models, jwtSecret }: { models: Models; jwtSecret: string },
+    ) => {
+      const user = await models.User.create({
+        name,
+        email,
+        password,
+        role: 'ADMIN',
+      });
+
+      return {
+        token: createToken(
+          { id: user.id, name: user.name, email: user.email, role: user.role },
+          jwtSecret,
+        ),
+      };
+    },
+
+    signIn: async (
+      _: unknown,
+      { email, password }: { email: string; password: string },
+      { models, jwtSecret }: { models: Models | any; jwtSecret: string },
+    ) => {
       const user = await models.User.findByLogin(email);
 
       if (!user) {

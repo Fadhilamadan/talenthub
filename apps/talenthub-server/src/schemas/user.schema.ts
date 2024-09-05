@@ -8,6 +8,7 @@ export default gql`
   }
 
   extend type Mutation {
+    signUp(name: String!, email: String!, password: String!): Token!
     signIn(email: String!, password: String!): Token!
   }
 
@@ -22,7 +23,7 @@ export default gql`
     id: ID!
     name: String!
     email: String!
-    role: String!
+    role: UserRole!
     organisation: ID
     createdAt: DateTime!
     updatedAt: DateTime!
@@ -30,5 +31,10 @@ export default gql`
 
   type Token {
     token: String!
+  }
+
+  enum UserRole {
+    ADMIN
+    USER
   }
 `;
