@@ -1,12 +1,12 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
-export type User = Document & {
-  id: object;
+export type User = {
+  id: string;
   name: string;
   email: string;
   password: string;
   role: 'ADMIN' | 'USER';
-  organisation?: object;
+  organisation?: Schema.Types.ObjectId; // IMPORTANT: referencing the associated organisation entity
 };
 
 const UserSchema = new Schema<User>(
