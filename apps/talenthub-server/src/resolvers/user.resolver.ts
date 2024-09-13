@@ -2,7 +2,7 @@ import { combineResolvers } from 'graphql-resolvers';
 import jwt from 'jsonwebtoken';
 
 import type { Models } from '../models';
-import type { User } from '../models/user.model';
+import { User, userValidationSchema } from '../models/user.model';
 import { isAuthenticated } from './authorization';
 
 const JWT_DURATION = process.env.JWT_DURATION;
@@ -74,19 +74,34 @@ export default {
       },
       { models, jwtSecret }: { models: Models; jwtSecret: string },
     ) => {
-      const user = await models.User.create({
-        name,
-        email,
-        password,
-        role: 'ADMIN',
-      });
+      try {
+        await userValidationSchema.validateAsync({ name, email, password });
+      } catch (validationError) {
+        throw new Error(validationError.details[0].message);
+      }
 
-      return {
-        token: createToken(
-          { id: user.id, name: user.name, email: user.email, role: user.role },
-          jwtSecret,
-        ),
-      };
+      try {
+        const user = await models.User.create({
+          name,
+          email,
+          password,
+          role: 'ADMIN',
+        });
+
+        return {
+          token: createToken(
+            {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              role: user.role,
+            },
+            jwtSecret,
+          ),
+        };
+      } catch (error) {
+        throw new Error(error);
+      }
     },
 
     signIn: async (
@@ -94,6 +109,12 @@ export default {
       { email, password }: { email: string; password: string },
       { models, jwtSecret }: { models: Models | any; jwtSecret: string },
     ) => {
+      try {
+        await userValidationSchema.validateAsync({ email, password });
+      } catch (validationError) {
+        throw new Error(validationError.details[0].message);
+      }
+
       const user = await models.User.findByLogin(email);
 
       if (!user) {
@@ -108,7 +129,12 @@ export default {
 
       return {
         token: createToken(
-          { id: user.id, name: user.name, email: user.email, role: user.role },
+          {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+          },
           jwtSecret,
         ),
       };
