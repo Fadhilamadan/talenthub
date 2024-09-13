@@ -7,7 +7,7 @@ import { isAuthenticated } from './authorization';
 
 const JWT_DURATION = process.env.JWT_DURATION;
 
-const createToken = async (payload: object, jwtSecret: string) => {
+const createToken = (payload: object, jwtSecret: string) => {
   return jwt.sign(payload, jwtSecret, { expiresIn: JWT_DURATION });
 };
 
