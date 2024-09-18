@@ -41,6 +41,7 @@
     "@swc/cli": "~0.3.12",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
+    "@swc/jest": "~0.2.36",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/graphql-resolvers": "^0.3.2",
