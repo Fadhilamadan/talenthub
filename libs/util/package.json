@@ -2,7 +2,11 @@
   "name": "@talenthub/util",
   "version": "0.0.1",
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@swc/helpers": "~0.5.11",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.2",
+    "@nx/react": "19.5.7",
+    "tailwindcss-animate": "^1.0.7"
   },
   "type": "commonjs",
   "main": "./src/index.js",
