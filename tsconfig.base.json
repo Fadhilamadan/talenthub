@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@talenthub/ui": ["libs/ui/src/index.ts"],
-      "@talenthub/util": ["libs/util/src/index.ts"]
+      "@talenthub/ui/*": ["libs/ui/src/*"],
+      "@talenthub/util": ["libs/util/src/index.ts"],
+      "@talenthub/util/*": ["libs/util/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
