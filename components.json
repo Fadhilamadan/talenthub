@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tailwind": {
+    "config": "libs/util/src/tailwind/tailwind.config.js",
+    "css": "libs/util/src/styles/global.css",
+    "baseColor": "zinc",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "@talenthub/ui/components",
+    "utils": "@talenthub/util"
+  }
+}
