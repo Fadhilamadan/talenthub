@@ -121,7 +121,7 @@ export default {
         _: unknown,
         { id }: { id: string },
         { models }: { models: Models },
-      ): Promise<Boolean> => {
+      ): Promise<boolean> => {
         if (!id) {
           throw new Error('User ID is required');
         }

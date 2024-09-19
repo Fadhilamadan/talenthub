@@ -9,7 +9,7 @@ jest.mock('jsonwebtoken', () => ({
 describe('user', () => {
   const MOCK_TOKEN = 'mocked-jwt-token';
 
-  let models: any;
+  let models: any; // eslint-disable-line @typescript-eslint/no-explicit-any
   let jwtSecret: string;
 
   beforeEach(() => {

@@ -12,6 +12,7 @@ import schema from './schemas'; // INFO: typeDefs
 
 const app = express();
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getMe = async (req: any) => {
   const token = req.headers['x-token'];
 
@@ -37,6 +38,7 @@ const startServer = async () => {
     cors<cors.CorsRequest>(),
     express.json(),
     expressMiddleware(server, {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       context: async ({ req }): Promise<any> => {
         if (req) {
           return {

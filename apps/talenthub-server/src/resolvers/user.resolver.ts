@@ -107,7 +107,7 @@ export default {
     signIn: async (
       _: unknown,
       { email, password }: { email: string; password: string },
-      { models, jwtSecret }: { models: Models | any; jwtSecret: string },
+      { models, jwtSecret }: { models: Models | any; jwtSecret: string }, // eslint-disable-line @typescript-eslint/no-explicit-any
     ) => {
       try {
         await userValidationSchema.validateAsync({ email, password });
